@@ -3,57 +3,24 @@ import './HotButton.css';
 
 export default function HotButton ({text}) {
   const [clickCount, setClickCount] = useState(0);
-  console.log('useState: ', clickCount);
   function handleClick () {
-    console.log('before setter: ', clickCount);
     setClickCount(clickCount + 1);
-    console.log('after setter:', clickCount);
   }
 
-    if (clickCount < 3) {
-      return (
-        <button onClick={handleClick} className='hot-button cold'>
-          {console.log('clickCount: ', clickCount)}
-          {text}
-        </button>
-      )
+  function defineColor () {
+    if (clickCount < 3) return '#82204a'
+    if (clickCount < 6) return '#996888'
+    if (clickCount < 9) return '#ff4d6d'
+    if (clickCount < 12) return '#ff9770'
+    if (clickCount < 15) return '#ffea00'
+    if (clickCount >= 15) return 'white'
+  };
+  const definedColor = defineColor();
 
-    }
-     if (clickCount < 6) {
-      return (
-        <button onClick={handleClick} className='hot-button cool'>
-          {console.log('clickCount: ', clickCount)}
-          {text}
-        </button>
-      )
-    }
-      if (clickCount < 9) {
     return (
-      <button onClick={handleClick} className='hot-button tepid'>
-        {console.log('clickCount: ', clickCount)}
-        {text}
-      </button>
-    )
-  }
-      if (clickCount < 12) {
-    return (
-      <button onClick={handleClick} className='hot-button warm'>
-        {console.log('clickCount: ', clickCount)}
-        {text}
-      </button>
-    )
-  }
-      if (clickCount < 15) {
-    return (
-      <button onClick={handleClick} className='hot-button hot'>
-        {console.log('clickCount: ', clickCount)}
-        {text}
-      </button>
-    )
-  }
-    return (
-      <button onClick={handleClick} className='hot-button nuclear'>
-        {console.log('clickCount: ', clickCount)}
+      <button onClick={handleClick} className='hot-button' style={{
+        backgroundColor: definedColor
+      }}>
         {text}
       </button>
     )
