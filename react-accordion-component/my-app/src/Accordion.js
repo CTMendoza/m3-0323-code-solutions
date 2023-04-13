@@ -4,27 +4,29 @@ import './Accordion.css'
 
 
 function Topic ({topic, onShow, isActive}) {
-console.log(topic)
+    console.log('isActive value: ', isActive)
     return  <>
-              <h2 onClick={() => onShow(topic.id)} className='title' key={topic.id}>{topic.title}</h2>
-              <p className= 'summary' key={topic.id}>{topic.summary}</p>
+              <h2 onClick={onShow} className='title' key={topic.id}>{topic.title}</h2>
+              {isActive && <p className='summary'  key={topic.id}>{topic.summary}</p>}
             </>
 }
 
-export default function Accordion ({topicsList}) {
+export default function Accordion ({topicsList, topic}) {
   const [activeIndex, setActiveIndex] = useState(null);
-    function handleClick (id) {
-      console.log('activeIndex is: ', activeIndex)
-      console.log('id is: ', id)
-    // if(activeIndex === topic.id) {
+
+  function handleClick (id) {
+    if(id === activeIndex) {
+      return setActiveIndex(null)
+    }
       setActiveIndex(id)
-    // }
   };
+
+
 
   return (
     <section>
       {topicsList.map( (topic) =>
-          <Topic  isActive={activeIndex === topic.id} onShow={() => handleClick(topic.id)}  topic={topic} />
+          <Topic  isActive= {activeIndex === topic.id} onShow={() => handleClick(topic.id)}  topic={topic} />
       )}
     </section>
   )

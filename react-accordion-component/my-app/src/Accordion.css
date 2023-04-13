@@ -6,3 +6,7 @@
 .summary {
   margin-bottom: 5px;
 }
+
+.none {
+  display: none;
+}
