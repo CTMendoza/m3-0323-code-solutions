@@ -4,7 +4,6 @@ import './Accordion.css'
 
 
 function Topic ({topic, onShow, isActive}) {
-    console.log('isActive value: ', isActive)
     return  <>
               <h2 onClick={onShow} className='title' key={topic.id}>{topic.title}</h2>
               {isActive && <p className='summary'  key={topic.id}>{topic.summary}</p>}
