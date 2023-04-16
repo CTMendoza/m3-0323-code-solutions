@@ -1,0 +1,12 @@
+.title {
+  border: solid;
+  background-color: grey;
+}
+
+.summary {
+  margin-bottom: 5px;
+}
+
+.none {
+  display: none;
+}
