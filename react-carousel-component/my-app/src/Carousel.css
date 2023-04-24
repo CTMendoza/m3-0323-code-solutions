@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.arrow-left {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  margin-right: 2rem;
+}
+
+.arrow-right {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  margin-left: 2rem;
+}
+
+img {
+  width: 30%;
+  height: 30%;
+}
+
+.fa-circle {
+  color: white;
+  border: solid;
+  border-color: black;
+  border-radius: 10px;
+  margin: 2px;
+}
