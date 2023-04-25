@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {FaArrowLeft, FaArrowRight, FaCircle } from  'react-icons/fa';
 import './Carousel.css';
 
 export default function Container  ({images}) {
   const [activeIndex, setActiveIndex]= useState(0);
+
+
+  useEffect(() => {
+    let timer = setInterval(handleNext, 3000);
+    return () => clearInterval(timer);
+  })
 
   function handlePrevious (id) {
       setActiveIndex((activeIndex - 1 + images.length) % images.length);
@@ -11,7 +17,7 @@ export default function Container  ({images}) {
 
   function handleNext (id) {
       setActiveIndex((activeIndex + 1) % images.length);
-}
+  }
 
  return (
   <>
@@ -19,9 +25,9 @@ export default function Container  ({images}) {
     <div className='arrow-left'>
       <ArrowLeft onClick={() => {handlePrevious()}}/>
     </div>
-
-    <img src={images[activeIndex].img}></img>
-
+    <div className="img-container">
+      <img alt='' src={images[activeIndex].img}></img>
+    </div>
     <div className='arrow-right'>
     <ArrowRight onClick={() => {handleNext()}}/>
     </div>
@@ -50,9 +56,8 @@ function Indicators({count, activeIndex, onSelect}) {
   const buttons = [];
   for (let i = 0; i < count; i++) {
     buttons.push(<CircleIcon
-      key={i}
       onClick={() => onSelect(i)}
-      color={i === activeIndex ? 'black' : 'white'}/>);
+      color={i === activeIndex ? 'green' : 'white'}/>);
   }
   return <div>{buttons}</div>;
 }
