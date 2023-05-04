@@ -15,16 +15,15 @@ export default function Users() {
     if(isLoading) {
        fetch("https://jsonplaceholder.typicode.com/users")
      .then(response => {
-        setIsLoading(false)
         return response.json()
       })
      .then((usersData) => {
         setUsers(usersData)
-        console.log('array of users data: ', usersData)
+        setIsLoading(false)
       })
-     .catch(error => {
-      setError(error)
-      console.error(error);
+     .catch(err=> {
+        setError(err)
+        setIsLoading(false)
      })
     }
   },[isLoading])

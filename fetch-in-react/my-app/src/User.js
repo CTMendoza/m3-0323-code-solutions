@@ -8,6 +8,20 @@ export default function User({ userId, onCancel }) {
   const [user, setUser] = useState();
 
   /* your code here (hint: useEffect) */
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((userData) => {
+      setUser(userData);
+      setIsLoading(false);
+    })
+    .catch((err) => {
+      setError(err);
+      setIsLoading(false)
+    })
+  },[userId])
 
   if (isLoading) {
     return <p>Loading...</p>;
